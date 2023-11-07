@@ -268,17 +268,17 @@ char *
 getwifistatus()
 {
 	FILE *pd;
-	char buf[24];
-	char cmd[64];
+	char buf[74];
+	char cmd[94];
 
-	snprintf(cmd, 64, "iwgetid | sed 's/.*:\"//; s/\"$//; /^$/d' ");
+	snprintf(cmd, 94, "nmcli -g IN-USE,SSID,SIGNAL device wifi | awk '/^*/' | awk -F '[:]' '{print $2 \"/\" $3 \"%%\"}'");
 
 	pd = popen(cmd, "r");
 	if (pd == NULL)
 		return smprintf("");
 
 	memset(buf, '\0', sizeof(buf));
-	fgets(buf, 24, pd);
+	fgets(buf, 74, pd);
 	int len = strlen(buf);
 	if (len == 0)
 		return smprintf("not connected");
