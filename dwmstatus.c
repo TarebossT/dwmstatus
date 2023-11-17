@@ -9,7 +9,6 @@
 #include <time.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
 #include <X11/Xlib.h>
 
 char *tzbuc = "Europe/Bucharest";
@@ -366,7 +365,7 @@ main(void)
     bright = getbrightness("/sys/class/backlight/intel_backlight");
     vol = getvolume();
     bat = getbattery("/sys/class/power_supply/BAT0");
-    tmbuc = mktimes("%a %d.%m.%Y %H:%M", tzbuc);
+    tmbuc = mktimes("%c", tzbuc);
 
 		status = smprintf("%s %s %s%% %s %s %s %s %s %s",
 				  hdd, mem, cpu, temp, bright, vol, bat, tmbuc, wifi);
