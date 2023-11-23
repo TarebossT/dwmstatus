@@ -119,7 +119,7 @@ getbattery(char *base)
     } else if (!strncmp(co, "Charging", 8)) {
         status = "";
     } else if (!strncmp(co, "Full", 4)) {
-        status = "";
+        status = "+";
     } else {
         status = "";
     }
